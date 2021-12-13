@@ -1,22 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  6 12:19:59 2021
-
-@author: IIOT 43
-"""
-
-"""import flask
-import pickle
-# Use pickle to load in the pre-trained model
-with open(f'model/heart_disease.pkl','rb') as f:model = pickle.load(f)
-app = flask.Flask(__name__,template_folder='template')
-@app.route('/')
-def main():
-    return (flask.render_template('main.html'))
-if( __name__ == '__main__'):
-    app.run()"""
-    
-    # -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 
 import numpy as np
 import pickle
@@ -26,12 +9,12 @@ from flask import Flask, request, render_template
 model = pickle.load(open('model.pkl', 'rb')) 
 
 # Create application
-app = Flask(__name__)
+app = Flask(__name__)   #app = Flask(__name__,template_folder="templates)
 
 # Bind home function to URL
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('main.html')
 
 # Bind predict function to URL
 @app.route('/predict', methods =['POST'])
@@ -48,10 +31,10 @@ def predict():
     
     # Check the output values and retrive the result with html tag based on the value
     if output == 1:
-        return render_template('Heart Disease Classifier.html', 
+        return render_template('main.html', 
                                result = 'The patient is not likely to have heart disease!')
     else:
-        return render_template('Heart Disease Classifier.html', 
+        return render_template('main.html', 
                                result = 'The patient is likely to have heart disease!')
 
 if __name__ == '__main__':
